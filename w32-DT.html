@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v4.js"></script>
+
+<body>
+<!-- Create a div where the graph will take place -->
+<div id="w32_dt"></div>
+
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 20, right: 10, bottom: 40, left: 180},
+    width = 460 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+// seteo largo del eje X
+var x_width= 40
+
+// append the svg object to the body of the page
+var svg = d3.select("#w32_dt")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Parse the Data
+d3.csv("https://download.data.world/s/c5u44kn2rw4y7cudwf3cnuiw63qse6", function(data) {
+
+  // Add X axis
+  var x = d3.scaleLinear()
+    .domain([0, x_width])
+    .range([ 0, width]);
+  
+  svg.append("g")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x))
+    .selectAll("text")
+      .attr("transform", "translate(0,0)rotate(0)")
+      .style("text-anchor", "end");
+
+  // Y axis
+  var y = d3.scaleBand()
+    .domain(data.map(function(d) { return d.benefit_of_remote_work; }))
+    .range([ 0, height ])
+    .padding(.2);
+  
+  svg.append("g")
+    .call(d3.axisLeft(y))
+    .selectAll("text")
+      .attr("transform", "translate(0,0)rotate(0)")
+      .style("text-anchor", "end");
+
+  
+   // Le agrego color a la barra
+   var color = d3.scaleLinear()
+    .domain([0, x_width])
+    .range(["brown", "steelblue"]);
+
+  
+  //Bars
+  svg.selectAll("myRect")
+    .data(data)
+    .enter()
+    .append("rect")
+    .attr("x", x(0) )
+    .attr("y", function(d) { return y(d.benefit_of_remote_work); })
+    .attr("width", function(d) { return x(d.percentage); })
+    .attr("height", y.bandwidth() )
+    .attr("fill", function(d) { return color(d.percentage); })
+
+
+    // .attr("x", function(d) { return x(d.Country); })
+    // .attr("y", function(d) { return y(d.Value); })
+    // .attr("width", x.bandwidth())
+    // .attr("height", function(d) { return height - y(d.Value); })
+    // .attr("fill", "#69b3a2")
+
+})
+
+</script>
+
+</body>

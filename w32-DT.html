@@ -33,7 +33,7 @@ d3.csv("https://download.data.world/s/c5u44kn2rw4y7cudwf3cnuiw63qse6", function(
   // Add X axis
   var x = d3.scaleLinear()
     .domain([0, x_width])
-    .range([ 0, width]);
+    .range([ 0, x_width]);
   
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")

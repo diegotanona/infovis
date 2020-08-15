@@ -26,8 +26,8 @@
     
 // set the dimensions and margins of the graph
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 640 - margin.left - margin.right,
-    height = 640 - margin.top - margin.bottom;
+    width = 500 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz").append("svg")
@@ -46,7 +46,7 @@ var color= //d3.scaleOrdinal(d3.schemeDark2);
 // Defino tamaño de la letra
 var tamfuente = d3.scaleLinear()
                   .domain([0, 40])
-                  .range([10, 46]);
+                  .range([8, 32]);
 
 //Levanto la data
 d3.csv("https://download.data.world/s/sv5yni6xrvpvmxxfnbuepkbn7dx2fp",function(data){

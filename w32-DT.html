@@ -51,6 +51,7 @@ var tamfuente = d3.scaleLinear()
 //Levanto la data
 d3.csv("https://download.data.world/s/sv5yni6xrvpvmxxfnbuepkbn7dx2fp",function(data){
 
+  
  // create a tooltip
   var Tooltip = d3.select("#my_dataviz")
     .append("div")
@@ -72,11 +73,11 @@ d3.csv("https://download.data.world/s/sv5yni6xrvpvmxxfnbuepkbn7dx2fp",function(d
   }
   var mousemove = function(d) {
     Tooltip
-      .html("percentage: " + d.size)
-      .style("left", (d3.mouse(this)[0]-70) + "px")
-      .style("top", (d3.mouse(this)[1]-70) + "px")
+      .html("percentage: <b>" + d.size +"%")
+      .style("left", (d3.select(this)[0]) + "px")
+      .style("top", (d3.select(this)[1]) + "px")
       .attr("text-anchor", "middle")
-      .style("font-family", "Impact")
+      .style("font-family", "Sans-serif")
   }
   var mouseleave = function(d) {
     Tooltip
@@ -93,7 +94,7 @@ var layout = d3.layout.cloud()
   .words(data.map(function(d) { return {text: d.benefit_of_remote_work.
                                         replace(/Ability to/g,"").replace(/Flexibility to/g,""), 
                                         size: d.percentage}; }))
-  .padding(10)        //space between words
+  .padding(12)        //space between words
   .rotate(function() { return ~~(Math.random() * 2) * 90; })
   .fontSize(function(d) { return tamfuente(parseInt(d.size)); })      // font size of words
   .on("end", draw);

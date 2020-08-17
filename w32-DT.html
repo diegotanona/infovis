@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>JS Bin</title>
+  
+  <h2 align="center"><font face="Helvetica" color="dimgray"> Benefits of Remote Work </font></h2>
 
   <!-- Load d3.js -->
   <script src="https://d3js.org/d3.v4.js"></script>
@@ -19,15 +21,14 @@
   <!-- Create a div where the graph will take place -->
   <div id="my_dataviz"></div>
 
-  </head>
-  
+</head>
 <body>
   <script>
     
-// set the dimensions and margins of the graph
+  // set the dimensions and margins of the graph
 var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 500 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 480 - margin.left - margin.right,
+    height = 480 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 var svg = d3.select("#my_dataviz").append("svg")
@@ -46,45 +47,50 @@ var color= //d3.scaleOrdinal(d3.schemeDark2);
 // Defino tamaño de la letra
 var tamfuente = d3.scaleLinear()
                   .domain([0, 40])
-                  .range([10, 38]);
+                  .range([10, 36]);
 
 //Levanto la data
 d3.csv("https://download.data.world/s/sv5yni6xrvpvmxxfnbuepkbn7dx2fp",function(data){
 
-  
- // create a tooltip
+  // create a tooltip
   var Tooltip = d3.select("#my_dataviz")
-    .append("div")
-    .style("opacity", 0)
-    .attr("class", "tooltip")
-    .style("background-color", "white")
-    .style("border", "solid")
-    .style("border-width", "2px")
-    .style("border-radius", "5px")
-    .style("padding", "5px")
-
+       .append("div")
+       .style("opacity", 0)
+       .attr("class", "tooltip")
+       .style("display", "inline")
+       .style("position", "absolute")
+       .style("background-color", "indianred")
+       .style("border", "solid")
+       .style("border-width", "1px")
+       .style("border-radius", "3px")
+       .style("border-color", "ghostwhite")
+       .style("padding", "5px")
+       .style("font-family", "Helvetica")
+       .style("color", "ghostwhite")
+ 
   // Three function that change the tooltip when user hover / move / leave a cell
   var mouseover = function(d) {
     Tooltip
       .style("opacity", 1)
     d3.select(this)
       .style("stroke", "black")
-      .style("opacity", 1)
+      .style("opacity", 0.5)
   }
   var mousemove = function(d) {
     Tooltip
-      .html("percentage: <b>" + d.size +"%")
-      .style("left", (d3.select(this)[0]) + "px")
-      .style("top", (d3.select(this)[1]) + "px")
-      .attr("text-anchor", "middle")
-      .style("font-family", "Sans-serif")
-  }
+      .html("percentage<br><b>" + d.size +"% </b>")
+     // .style("text-anchor", "middle")
+      .style("font-size","smaller")
+      .style("text-align", "center")
+      .style("top",(event.pageY) + 2 + "px")
+      .style("left",(event.pageX) + 10 + "px")
+   }
   var mouseleave = function(d) {
     Tooltip
       .style("opacity", 0)
     d3.select(this)
       .style("stroke", "none")
-      .style("opacity", 0.8)
+      .style("opacity", 1)
   }
   
 // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
@@ -125,5 +131,6 @@ function draw(words) {
 });
 
   </script>
+  
 </body>
 </html>

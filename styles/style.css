@@ -1,0 +1,8 @@
+.padre {
+   display: flex;
+   align-items: center;
+}
+.hijo {
+   display: table-cell;
+   vertical-align: middle;
+}

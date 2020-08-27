@@ -2,7 +2,7 @@
 
 ## TP Datos Personales
 
-Color de las comidas --> [https://diegotanona.github.io/infovis/tp-DT.html](https://diegotanona.github.io/infovis/tp-DT.html)
+Colores de las comidas --> [https://diegotanona.github.io/infovis/tp-DT.html](https://diegotanona.github.io/infovis/tp-DT.html)
 
 ## Makeover Monday
 

@@ -1,5 +1,9 @@
 # infovis
 
+## TP Datos Personales
+
+Color de las comidas --> [https://diegotanona.github.io/infovis/TP-DT.html](https://diegotanona.github.io/infovis/TP-DT.html)
+
 ## Makeover Monday
 
 w33-The state of the Digital Nation --> [https://diegotanona.github.io/infovis/w33-DT.html](https://diegotanona.github.io/infovis/w33-DT.html)
